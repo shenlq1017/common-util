@@ -22,9 +22,13 @@ class JtBeanUtil {
         fun <T> beanToMapCglib(bean: T): Map<String, Any?> {
             var map = HashMap<String, Any?>()
             if (bean != null) {
-                val beanMap = BeanMap.create(bean)
-                for ((key, value) in beanMap) {
-                    map[key.toString()] = value
+                if(bean is Map<*,*>) {
+                    map = bean as HashMap<String, Any?>
+                }else {
+                    val beanMap = BeanMap.create(bean)
+                    for ((key, value) in beanMap) {
+                        map[key.toString()] = value
+                    }
                 }
             }
             return map
@@ -79,6 +83,7 @@ class JtBeanUtil {
 
             return map
         }
+
 
     }
 

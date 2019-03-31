@@ -8,8 +8,17 @@ package com.sucsoft.jt.acjtutil.domain
  */
 class TreeVO {
     var id: String? = null
-    var name: String? = null
+    var title: String? = null
     var parentId: String? = null
+    var expand: Boolean? = false
     var children: List<TreeVO> = ArrayList()
+
+    constructor()
+    constructor(id: String?, title: String?, parentId: String?) {
+        this.id = id
+        this.title = title
+        this.parentId = parentId
+    }
+
 
 }
