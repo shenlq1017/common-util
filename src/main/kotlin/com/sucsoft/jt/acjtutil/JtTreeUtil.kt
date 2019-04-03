@@ -26,17 +26,17 @@ class JtTreeUtil {
          * @return
          * @throws
          */
-        fun <T> backTree(datas:List<T>,id: String,pid: String,title: String,rootIds: List<String>): List<TreeVO> {
+        fun <T> backTree(datas:List<T>,id: String,pid: String,title: String,belongNum: String, rootIds: List<String>): ArrayList<TreeVO> {
             var dataTrees = ArrayList<TreeVO>()
             for (it in datas) {
-                var treeMap = JtBeanUtil.beanToMapCglib(it)
-                dataTrees.add(TreeVO(treeMap[id]?.toString() ,treeMap[title]?.toString(),treeMap[pid]?.toString()))
+                var treeMap = JtBeanUtil.objectToMapB(it!!)
+                dataTrees.add(TreeVO(treeMap[id]?.toString() ,treeMap[title]?.toString(),treeMap[pid]?.toString(),treeMap[belongNum]?.toString()!!.toInt()))
             }
             var rootTrees = dataTrees.filter { rootIds.contains(it.id) }
             for (it in rootTrees) {
                 loopTree(dataTrees,it)
             }
-            return rootTrees
+            return ArrayList(rootTrees)
         }
 
         /**

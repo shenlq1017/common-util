@@ -24,7 +24,7 @@ class JtBeanUtil {
             if (bean != null) {
                 if(bean is Map<*,*>) {
                     map = bean as HashMap<String, Any?>
-                }else {
+                }else{
                     val beanMap = BeanMap.create(bean)
                     for ((key, value) in beanMap) {
                         map[key.toString()] = value
