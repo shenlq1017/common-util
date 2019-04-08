@@ -5,5 +5,7 @@ package com.sucsoft.jt.acjtutil.domain
  */
 enum class BeanConstant constructor(val value: Int){
     ISDELETED(1),
-    UNDELETED(0)
+    UNDELETED(0),
+    YES(1),
+    NO(0)
 }
