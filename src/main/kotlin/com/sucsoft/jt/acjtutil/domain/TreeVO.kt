@@ -17,6 +17,12 @@ class TreeVO: Serializable {
     var children: List<TreeVO> = ArrayList()
 
     constructor()
+    constructor(id: String?, title: String?, parentId: String?) {
+        this.id = id
+        this.title = title
+        this.parentId = parentId
+    }
+
     constructor(id: String?, title: String?, parentId: String?, belongNum: Int) {
         this.id = id
         this.title = title

@@ -14,6 +14,14 @@ import java.util.regex.Pattern
 class JtLetterUtil {
 
     companion object {
+        fun captureName(name: String): String {
+            val chars = name.toCharArray()
+            if (chars[0] in 'a'..'z') {
+                chars[0] = (chars[0].toInt() - 32).toChar()
+            }
+            return String(chars)
+        }
+
         /**
          * 获取汉字首字母或全拼大写字母
          *

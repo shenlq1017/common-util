@@ -26,11 +26,12 @@ class JtTreeUtil {
          * @return
          * @throws
          */
-        fun <T> backTree(datas:List<T>,id: String,pid: String,title: String,belongNum: String, rootIds: List<String>): ArrayList<TreeVO> {
-            var dataTrees = ArrayList<TreeVO>()
+        fun <T> backTree(datas:List<T>,id: String,pid: String,title: String,belongNum: String?, rootIds: List<String>): ArrayList<TreeVO> {
+            val dataTrees = ArrayList<TreeVO>()
             for (it in datas) {
-                var treeMap = JtBeanUtil.objectToMapB(it!!)
-                dataTrees.add(TreeVO(treeMap[id]?.toString() ,treeMap[title]?.toString(),treeMap[pid]?.toString(),treeMap[belongNum]?.toString()!!.toInt()))
+                val treeMap = JtBeanUtil.objectToMapB(it!!)
+                val num = if(belongNum!=null) treeMap[belongNum]?.toString()!!.toInt() else 0
+                dataTrees.add(TreeVO(treeMap[id]?.toString() ,treeMap[title]?.toString(),treeMap[pid]?.toString(),num))
             }
             var rootTrees = dataTrees.filter { rootIds.contains(it.id) }
             for (it in rootTrees) {
@@ -53,8 +54,8 @@ class JtTreeUtil {
          * @throws
          */
         fun loopTree(dataTrees: List<TreeVO>,rootTree: TreeVO) {
-            var children = dataTrees
-            var needChild = ArrayList<TreeVO>()
+            val children = dataTrees
+            val needChild = ArrayList<TreeVO>()
             for (it in children) {
                 if (rootTree.id == it.parentId) {
                     needChild.add(it)
